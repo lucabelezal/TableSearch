@@ -16,6 +16,11 @@
 		6E606330240D7E3A00A0566A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60632F240D7E3A00A0566A /* DetailViewController.swift */; };
 		6E606332240D7E6500A0566A /* ResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E606331240D7E6500A0566A /* ResultsTableController.swift */; };
 		6E606334240D7ECC00A0566A /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E606333240D7ECC00A0566A /* MainTableViewController.swift */; };
+		6E60633B240D80B100A0566A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60633A240D80B100A0566A /* Product.swift */; };
+		6E60633E240D812100A0566A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E60633D240D812100A0566A /* Localizable.strings */; };
+		6E606340240D894F00A0566A /* MainTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60633F240D894F00A0566A /* MainTableViewController+DataSource.swift */; };
+		6E606342240D895B00A0566A /* MainTableViewController+Updating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E606341240D895B00A0566A /* MainTableViewController+Updating.swift */; };
+		6E606344240D896600A0566A /* MainTableViewController+Restore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E606343240D896600A0566A /* MainTableViewController+Restore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		6E60632F240D7E3A00A0566A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6E606331240D7E6500A0566A /* ResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableController.swift; sourceTree = "<group>"; };
 		6E606333240D7ECC00A0566A /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		6E60633A240D80B100A0566A /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		6E60633D240D812100A0566A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		6E60633F240D894F00A0566A /* MainTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTableViewController+DataSource.swift"; sourceTree = "<group>"; };
+		6E606341240D895B00A0566A /* MainTableViewController+Updating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTableViewController+Updating.swift"; sourceTree = "<group>"; };
+		6E606343240D896600A0566A /* MainTableViewController+Restore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTableViewController+Restore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,7 @@
 				6E60632D240D7C0B00A0566A /* TableCell.xib */,
 				6E60631D240D792800A0566A /* Assets.xcassets */,
 				6E606322240D792800A0566A /* Info.plist */,
+				6E60633D240D812100A0566A /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -113,6 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				6E606333240D7ECC00A0566A /* MainTableViewController.swift */,
+				6E60633F240D894F00A0566A /* MainTableViewController+DataSource.swift */,
+				6E606341240D895B00A0566A /* MainTableViewController+Updating.swift */,
+				6E606343240D896600A0566A /* MainTableViewController+Restore.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -120,6 +134,7 @@
 		6E606339240D802600A0566A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6E60633A240D80B100A0566A /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E60633E240D812100A0566A /* Localizable.strings in Resources */,
 				6E606321240D792800A0566A /* LaunchScreen.storyboard in Resources */,
 				6E60631E240D792800A0566A /* Assets.xcassets in Resources */,
 				6E60632E240D7C0B00A0566A /* TableCell.xib in Resources */,
@@ -200,7 +216,11 @@
 				6E606315240D792600A0566A /* AppDelegate.swift in Sources */,
 				6E606317240D792600A0566A /* SceneDelegate.swift in Sources */,
 				6E606334240D7ECC00A0566A /* MainTableViewController.swift in Sources */,
+				6E606342240D895B00A0566A /* MainTableViewController+Updating.swift in Sources */,
 				6E606330240D7E3A00A0566A /* DetailViewController.swift in Sources */,
+				6E606340240D894F00A0566A /* MainTableViewController+DataSource.swift in Sources */,
+				6E606344240D896600A0566A /* MainTableViewController+Restore.swift in Sources */,
+				6E60633B240D80B100A0566A /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -330,7 +350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -353,7 +373,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.teste.TableSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -370,7 +390,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.teste.TableSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
