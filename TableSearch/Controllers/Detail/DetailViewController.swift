@@ -25,8 +25,7 @@ class DetailViewController: UIViewController {
     class func detailViewControllerForProduct(_ product: Product) -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        let viewController =
-            storyboard.instantiateViewController(withIdentifier: "DetailViewController")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController")
         
         if let detailViewController = viewController as? DetailViewController {
             detailViewController.product = product

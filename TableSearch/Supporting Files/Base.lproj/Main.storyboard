@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xrd-k4-fPL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xrd-k4-fPL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,14 +27,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46p-f3-29u" userLabel="Year Label">
-                                <rect key="frame" x="63" y="60" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46p-f3-29u" userLabel="Year Label">
+                                <rect key="frame" x="63" y="60" width="32.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwH-7P-EcD" userLabel="Price Label">
-                                <rect key="frame" x="68" y="76" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwH-7P-EcD" userLabel="Price Label">
+                                <rect key="frame" x="68" y="97" width="32.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,14 +42,16 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="BwH-7P-EcD" firstAttribute="leading" secondItem="gD4-ta-jIH" secondAttribute="trailing" constant="8" id="0Dj-ER-AYK"/>
-                            <constraint firstItem="Nzm-sU-POZ" firstAttribute="top" secondItem="Lkn-Ze-TKK" secondAttribute="top" constant="16" id="9Pw-Le-plB"/>
-                            <constraint firstItem="46p-f3-29u" firstAttribute="top" secondItem="Lkn-Ze-TKK" secondAttribute="top" constant="16" id="Gfs-Xb-47n"/>
-                            <constraint firstItem="46p-f3-29u" firstAttribute="leading" secondItem="Nzm-sU-POZ" secondAttribute="trailing" constant="8" id="Vy3-VM-czk"/>
-                            <constraint firstItem="BwH-7P-EcD" firstAttribute="top" secondItem="46p-f3-29u" secondAttribute="bottom" constant="16" id="d19-F6-KTh"/>
-                            <constraint firstItem="gD4-ta-jIH" firstAttribute="top" secondItem="Nzm-sU-POZ" secondAttribute="bottom" constant="16" id="j15-I0-Vcv"/>
-                            <constraint firstItem="gD4-ta-jIH" firstAttribute="leading" secondItem="Lkn-Ze-TKK" secondAttribute="leading" constant="16" id="kJN-wx-iU9"/>
-                            <constraint firstItem="Nzm-sU-POZ" firstAttribute="leading" secondItem="Lkn-Ze-TKK" secondAttribute="leading" constant="16" id="tie-yd-QCa"/>
+                            <constraint firstItem="gD4-ta-jIH" firstAttribute="leading" secondItem="Lkn-Ze-TKK" secondAttribute="leading" constant="16" id="1AT-0K-ACQ"/>
+                            <constraint firstItem="Nzm-sU-POZ" firstAttribute="leading" secondItem="Lkn-Ze-TKK" secondAttribute="leading" constant="16" id="433-F5-9D0"/>
+                            <constraint firstItem="Lkn-Ze-TKK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BwH-7P-EcD" secondAttribute="trailing" constant="16" id="AVN-Dh-HY1"/>
+                            <constraint firstItem="BwH-7P-EcD" firstAttribute="leading" secondItem="gD4-ta-jIH" secondAttribute="trailing" constant="8" id="C9h-CB-U7Q"/>
+                            <constraint firstItem="46p-f3-29u" firstAttribute="leading" secondItem="Nzm-sU-POZ" secondAttribute="trailing" constant="8" id="IEA-Dg-kgy"/>
+                            <constraint firstItem="BwH-7P-EcD" firstAttribute="top" secondItem="46p-f3-29u" secondAttribute="bottom" constant="16" id="OVA-hE-zdX"/>
+                            <constraint firstItem="Lkn-Ze-TKK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="46p-f3-29u" secondAttribute="trailing" constant="16" id="PEj-9W-L8P"/>
+                            <constraint firstItem="46p-f3-29u" firstAttribute="top" secondItem="Lkn-Ze-TKK" secondAttribute="top" constant="16" id="pq0-8b-Hb1"/>
+                            <constraint firstItem="Nzm-sU-POZ" firstAttribute="top" secondItem="Lkn-Ze-TKK" secondAttribute="top" constant="16" id="xT1-UR-L9J"/>
+                            <constraint firstItem="gD4-ta-jIH" firstAttribute="top" secondItem="Nzm-sU-POZ" secondAttribute="bottom" constant="16" id="xbB-QS-dub"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lkn-Ze-TKK"/>
                     </view>
@@ -60,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ei8-JY-d50" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1552" y="-51"/>
+            <point key="canvasLocation" x="2011.594202898551" y="-56.25"/>
         </scene>
         <!--Table Search-->
         <scene sceneID="KLD-ui-c8R">
@@ -79,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijH-1t-toX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="801" y="-56"/>
+            <point key="canvasLocation" x="641" y="-56"/>
         </scene>
         <!--Results Table Controller-->
         <scene sceneID="jyV-QK-DIg">
@@ -94,18 +96,16 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODr-yy-PsQ">
-                                    <rect key="frame" x="8" y="22" width="398" height="0.0"/>
+                                    <rect key="frame" x="207" y="22" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="ODr-yy-PsQ" firstAttribute="leading" secondItem="fic-Nl-Vsp" secondAttribute="leading" constant="8" id="0D5-MK-hSI"/>
                                 <constraint firstItem="ODr-yy-PsQ" firstAttribute="centerY" secondItem="fic-Nl-Vsp" secondAttribute="centerY" id="98j-Hi-Nx1"/>
                                 <constraint firstItem="ODr-yy-PsQ" firstAttribute="centerX" secondItem="fic-Nl-Vsp" secondAttribute="centerX" id="GyK-gl-Pdm"/>
-                                <constraint firstAttribute="trailing" secondItem="ODr-yy-PsQ" secondAttribute="trailing" constant="8" id="kL1-jK-H0u"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -129,7 +129,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l9-7q-7Z4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="800" y="587"/>
+            <point key="canvasLocation" x="1322" y="-56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="96G-yx-LMq">

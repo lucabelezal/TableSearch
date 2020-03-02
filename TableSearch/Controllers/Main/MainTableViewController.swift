@@ -43,7 +43,7 @@ class MainTableViewController: UITableViewController {
         searchController.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self // Monitor when the search button is tapped.
         
         searchController.searchBar.scopeButtonTitles = [Product.productTypeName(forType: .all),

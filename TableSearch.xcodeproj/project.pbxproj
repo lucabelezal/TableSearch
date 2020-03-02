@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,8 @@
 		6E606340240D894F00A0566A /* MainTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60633F240D894F00A0566A /* MainTableViewController+DataSource.swift */; };
 		6E606342240D895B00A0566A /* MainTableViewController+Updating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E606341240D895B00A0566A /* MainTableViewController+Updating.swift */; };
 		6E606344240D896600A0566A /* MainTableViewController+Restore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E606343240D896600A0566A /* MainTableViewController+Restore.swift */; };
+		6EAB2546240DA32300B47C6F /* CoordinatorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6EAB2545240DA32300B47C6F /* CoordinatorKit */; };
+		6ECC54E3240DB97100C80ADB /* LayoutKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6ECC54E2240DB97100C80ADB /* LayoutKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EAB2546240DA32300B47C6F /* CoordinatorKit in Frameworks */,
+				6ECC54E3240DB97100C80ADB /* LayoutKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +159,10 @@
 			dependencies = (
 			);
 			name = TableSearch;
+			packageProductDependencies = (
+				6EAB2545240DA32300B47C6F /* CoordinatorKit */,
+				6ECC54E2240DB97100C80ADB /* LayoutKit */,
+			);
 			productName = TableSearch;
 			productReference = 6E606311240D792600A0566A /* TableSearch.app */;
 			productType = "com.apple.product-type.application";
@@ -183,6 +191,10 @@
 				Base,
 			);
 			mainGroup = 6E606308240D792600A0566A;
+			packageReferences = (
+				6EAB2544240DA32300B47C6F /* XCRemoteSwiftPackageReference "CoordinatorKit" */,
+				6ECC54E1240DB97100C80ADB /* XCRemoteSwiftPackageReference "LayoutKit" */,
+			);
 			productRefGroup = 6E606312240D792600A0566A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -416,6 +428,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6EAB2544240DA32300B47C6F /* XCRemoteSwiftPackageReference "CoordinatorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bfernandesbfs/CoordinatorKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		6ECC54E1240DB97100C80ADB /* XCRemoteSwiftPackageReference "LayoutKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucabelezal/LayoutKit.git";
+			requirement = {
+				branch = SPM;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6EAB2545240DA32300B47C6F /* CoordinatorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6EAB2544240DA32300B47C6F /* XCRemoteSwiftPackageReference "CoordinatorKit" */;
+			productName = CoordinatorKit;
+		};
+		6ECC54E2240DB97100C80ADB /* LayoutKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6ECC54E1240DB97100C80ADB /* XCRemoteSwiftPackageReference "LayoutKit" */;
+			productName = LayoutKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E606309240D792600A0566A /* Project object */;
 }

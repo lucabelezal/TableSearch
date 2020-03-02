@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CoordinatorKit",
+        "repositoryURL": "https://github.com/bfernandesbfs/CoordinatorKit",
+        "state": {
+          "branch": "master",
+          "revision": "85f7e4f1d6c3b5119da3229195cf4947afaf0d9e",
+          "version": null
+        }
+      },
+      {
+        "package": "LayoutKit",
+        "repositoryURL": "https://github.com/lucabelezal/LayoutKit.git",
+        "state": {
+          "branch": "SPM",
+          "revision": "d3c43e4c44a00eacd3361471952b1b7213a84d92",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
