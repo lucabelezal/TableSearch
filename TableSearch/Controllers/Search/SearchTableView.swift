@@ -379,13 +379,7 @@ extension SearchTableView: UISearchResultsUpdating {
 
         // Apply the filtered results to the search results table.
         if let resultsController = searchController.searchResultsController as? ResultsTableController {
-            resultsController.filteredProducts = filteredResults
-            resultsController.tableView.reloadData()
-
-            resultsController.resultsLabel.text = resultsController.filteredProducts.isEmpty ?
-                NSLocalizedString("NoItemsFoundTitle", comment: "") :
-                String(format: NSLocalizedString("Items found: %ld", comment: ""),
-                       resultsController.filteredProducts.count)
+            resultsController.viewModel = ResultsTableViewModel(filteredProducts: filteredResults)
         }
     }
     

@@ -11,11 +11,10 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    // Constants for state restoration.
-    private static let restoreProduct = "restoreProductKey"
-    
     // MARK: - Properties
 
+    private static let restoreProduct = "restoreProductKey"
+    
     var product: Product? {
         didSet {
             updateView()

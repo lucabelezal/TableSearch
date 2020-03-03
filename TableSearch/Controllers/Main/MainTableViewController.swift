@@ -95,7 +95,7 @@ extension MainTableViewController {
         if tableView === self.tableView {
             selectedProduct = product(forIndexPath: indexPath)
         } else {
-            selectedProduct = resultsTableController.filteredProducts[indexPath.row]
+            selectedProduct = resultsTableController.viewModel.filteredProducts[indexPath.row]
         }
         
         let detailViewController = DetailViewController(product: selectedProduct)
