@@ -1,5 +1,5 @@
 //
-//  MainTableViewController+DataSource.swift
+//  SearchTableViewController.swift
 //  TableSearch
 //
 //  Created by Lucas Nascimento on 02/03/20.
@@ -8,9 +8,72 @@
 
 import UIKit
 
-extension MainTableViewController {
+internal class SearchTableViewController: UIViewController {
+        
+    // MARK: - Private Property
     
-    enum Localization: String {
+    private var products: [Product]? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    // MARK: - Life Cicle
+    
+    internal init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    internal required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Override Methods
+    
+    internal override func loadView() {
+        self.view = SearchTableView(frame: UIScreen.main.bounds)
+    }
+    
+    internal override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavigationBar()
+        configureViewState()
+        loadData()
+    }
+    
+    // MARK: - Private methods
+    
+    private func configureViewState() {
+        
+    }
+    
+    private func configureNavigationBar() {
+        
+    }
+    
+    private func loadData() {
+         products = setupDataSource()
+    }
+    
+    private func updateView() {
+        
+        if let view = self.view as? SearchTableView, let data = products {
+            view.viewModel = SearchTableViewModel(products: data)
+        }
+    }
+    
+    // MARK: - Action Button
+    
+    @objc private func pressBackButton() {
+        
+    }
+    
+}
+
+extension SearchTableViewController {
+    
+    private enum Localization: String {
         case ginger = "GingerTitle"
         case gladiolus = "Gladiolus"
         case orchid = "Orchid"
@@ -35,38 +98,8 @@ extension MainTableViewController {
         }
     }
     
-    func quantity(forType: Product.ProductType) -> Int {
-        var quantity = 0
-        
-        for product in products where product.type == forType.rawValue {
-            quantity += 1
-        }
-        
-        return quantity
-    }
-    
-    func product(forIndexPath: IndexPath) -> Product {
-                
-        let quantityForBirthdays = quantity(forType: Product.ProductType.birthdays)
-        
-        switch forIndexPath.section {
-        case Product.ProductType.birthdays.rawValue - 1:
-            return products[forIndexPath.row]
-            
-        case Product.ProductType.weddings.rawValue - 1:
-            return products[forIndexPath.row + quantityForBirthdays]
-            
-        case Product.ProductType.funerals.rawValue - 1:
-            let quantityForWeddings = quantity(forType: Product.ProductType.weddings)
-            return products[forIndexPath.row + quantityForBirthdays + quantityForWeddings]
-            
-        default:
-            return Product(title: String(), yearIntroduced: 0, introPrice: 0, type: .all)
-        }
-    }
-    
-    func setupDataSource() {
-        products = [
+    private func setupDataSource() -> [Product] {
+        return [
             Product(title: Localization.ginger.localized(), yearIntroduced: 2007, introPrice: 49.98, type: .birthdays),
             Product(title: Localization.gladiolus.localized(), yearIntroduced: 2001, introPrice: 51.99, type: .birthdays),
             Product(title: Localization.orchid.localized(), yearIntroduced: 2007, introPrice: 16.99, type: .birthdays),
@@ -88,4 +121,3 @@ extension MainTableViewController {
     }
     
 }
-

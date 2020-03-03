@@ -14,29 +14,20 @@ class MainTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    /// Data model for the table view.
     var products = [Product]()
-
-    /// Search controller to help us with filtering items in the table view.
     var searchController: UISearchController!
-    
-    /// Search results table view.
-    private var resultsTableController: ResultsTableController!
-    
-    /// Restoration state for UISearchController
+    var resultsTableController: ResultsTableController!
     var restoredState = SearchControllerRestorableState()
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+            
         let nib = UINib(nibName: "TableCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: tableViewCellIdentifier)
         
-        resultsTableController =
-            self.storyboard?.instantiateViewController(withIdentifier: "ResultsTableController") as? ResultsTableController
-        // This view controller is interested in table view row selections.
+        resultsTableController = storyboard?.instantiateViewController(withIdentifier: "ResultsTableController") as? ResultsTableController
         resultsTableController.tableView.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsTableController)
@@ -44,27 +35,17 @@ class MainTableViewController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self // Monitor when the search button is tapped.
-        
-        searchController.searchBar.scopeButtonTitles = [Product.productTypeName(forType: .all),
-                                                        Product.productTypeName(forType: .birthdays),
-                                                        Product.productTypeName(forType: .weddings),
-                                                        Product.productTypeName(forType: .funerals)]
+        searchController.searchBar.delegate = self
+        searchController.searchBar.scopeButtonTitles = [
+            Product.productTypeName(forType: .all),
+            Product.productTypeName(forType: .birthdays),
+            Product.productTypeName(forType: .weddings),
+            Product.productTypeName(forType: .funerals)
+        ]
 
-        // Place the search bar in the navigation bar.
+
         navigationItem.searchController = searchController
-        
-        // Make the search bar always visible.
         navigationItem.hidesSearchBarWhenScrolling = false
-        
-        /** Search presents a view controller by applying normal view controller presentation semantics.
-            This means that the presentation moves up the view controller hierarchy until it finds the root
-            view controller or one that defines a presentation context.
-        */
-        
-        /** Specify that this view controller determines how the search controller is presented.
-            The search controller should be presented modally and match the physical size of this view controller.
-        */
         definesPresentationContext = true
         
         setupDataSource()
@@ -73,7 +54,6 @@ class MainTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Restore the searchController's active state.
         if restoredState.wasActive {
             searchController.isActive = restoredState.wasActive
             restoredState.wasActive = false
@@ -92,16 +72,15 @@ class MainTableViewController: UITableViewController {
 extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let selectedProduct: Product!
         
-        // Check to see which table view cell was selected.
         if tableView === self.tableView {
             selectedProduct = product(forIndexPath: indexPath)
         } else {
             selectedProduct = resultsTableController.filteredProducts[indexPath.row]
         }
         
-        // Set up the detail view controller to push.
         let detailViewController = DetailViewController.detailViewControllerForProduct(selectedProduct)
         navigationController?.pushViewController(detailViewController, animated: true)
 
@@ -115,7 +94,6 @@ extension MainTableViewController {
 extension MainTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Divide up the table in sections according to the scope of flowers (minus the All scope).
         return searchController.searchBar.scopeButtonTitles!.count - 1
     }
     
@@ -176,8 +154,6 @@ extension MainTableViewController: UISearchBarDelegate {
 }
 
 // MARK: - UISearchControllerDelegate
-
-// Use these delegate functions for additional control over the search controller.
 
 extension MainTableViewController: UISearchControllerDelegate {
     
