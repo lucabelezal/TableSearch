@@ -12,4 +12,4 @@ Create a user interface with searchable content in a table view.
 
 Reference Link: https://developer.apple.com/documentation/uikit/view_controllers/displaying_searchable_content_by_using_a_search_controller
 
-![Exemplo](https://github.com/lucabelezal/iOS-MVVM-Xcode-Template/blob/master/Image/image.png)
+![Exemplo](https://github.com/lucabelezal/TableSearch/blob/refactor/view_code/GIF/TableSearch.gif)
