@@ -9,35 +9,40 @@
 import UIKit
 
 class ResultsTableController: UITableViewController {
-    
-    let tableViewCellIdentifier = "cellID"
-    
+        
     var filteredProducts = [Product]()
     
-    @IBOutlet weak var resultsLabel: UILabel!
+    var resultsLabel: UILabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let nib = UINib(nibName: "TableCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: tableViewCellIdentifier)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableHeaderView?.frame.size.height = 44
+        tableView.tableHeaderView = resultsLabel
+        
+        registerTableCell()
     }
     
-    // MARK: - UITableViewDataSource
+    func registerTableCell() {
+        tableView.register(cellType: TableCellView.self)
+    }
+    
+}
+
+// MARK: - UITableViewDataSource
+
+extension ResultsTableController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredProducts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier, for: indexPath)
-        let product = filteredProducts[indexPath.row]
-        
-        cell.textLabel?.text = product.title
-        
-        let priceString = product.formattedIntroPrice()
-        cell.detailTextLabel?.text = "\(priceString!) | \(product.yearIntroduced)"
-        
+        let cell: TableCellView = tableView.dequeueReusableCell(for: indexPath)
+        cell.viewModel = TableCellViewModel(product: filteredProducts[indexPath.row])
         return cell
     }
+    
 }

@@ -65,8 +65,8 @@ extension MainTableViewController {
         }
     }
     
-    func setupDataSource() {
-        products = [
+    func setupDataSource() -> [Product] {
+        return [
             Product(title: Localization.ginger.localized(), yearIntroduced: 2007, introPrice: 49.98, type: .birthdays),
             Product(title: Localization.gladiolus.localized(), yearIntroduced: 2001, introPrice: 51.99, type: .birthdays),
             Product(title: Localization.orchid.localized(), yearIntroduced: 2007, introPrice: 16.99, type: .birthdays),

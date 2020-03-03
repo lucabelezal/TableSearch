@@ -24,3 +24,13 @@ internal struct TableCellViewModel: TableCellViewModelProtocol {
     }
 
 }
+
+extension TableCellViewModel {
+    
+    init(product: Product) {
+        let priceString: String? = product.formattedIntroPrice()
+        
+        self.text = product.title
+        self.detailText = "\(priceString.unsafelyUnwrapped) | \(product.yearIntroduced)"
+    }
+}

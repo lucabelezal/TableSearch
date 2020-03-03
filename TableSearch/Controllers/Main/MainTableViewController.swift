@@ -10,28 +10,16 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    let tableViewCellIdentifier = "cellID"
-    
     // MARK: - Properties
     
-    var products = [Product]()
-    var searchController: UISearchController!
-    var resultsTableController: ResultsTableController!
-    var restoredState = SearchControllerRestorableState()
+    let tableViewCellIdentifier = "cellID"
     
-    // MARK: - View Life Cycle
+    lazy var products: [Product] = {
+        return setupDataSource()
+    }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-            
-        let nib = UINib(nibName: "TableCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: tableViewCellIdentifier)
-        
-        resultsTableController = storyboard?.instantiateViewController(withIdentifier: "ResultsTableController") as? ResultsTableController
-        resultsTableController.tableView.delegate = self
-        
-        searchController = UISearchController(searchResultsController: resultsTableController)
-        searchController.delegate = self
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: resultsTableController)
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
         searchController.obscuresBackgroundDuringPresentation = false
@@ -42,13 +30,37 @@ class MainTableViewController: UITableViewController {
             Product.productTypeName(forType: .weddings),
             Product.productTypeName(forType: .funerals)
         ]
-
+        return searchController
+    }()
+    
+    lazy var resultsTableController: ResultsTableController = {
+        
+        guard let resultsTableController = storyboard?.instantiateViewController(withIdentifier: "ResultsTableController") as? ResultsTableController else {
+            return ResultsTableController()
+        }
+        
+        resultsTableController.tableView.delegate = self
+        
+        return resultsTableController
+    }()
+    
+    lazy var restoredState: SearchControllerRestorableState = {
+        return SearchControllerRestorableState()
+    }()
+    
+    // MARK: - View Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
 
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         
-        setupDataSource()
+        registerCell()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,7 +76,12 @@ class MainTableViewController: UITableViewController {
             }
         }
     }
-
+    
+    fileprivate func registerCell() {
+        let nib = UINib(nibName: "TableCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: tableViewCellIdentifier)
+    }
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -81,7 +98,7 @@ extension MainTableViewController {
             selectedProduct = resultsTableController.filteredProducts[indexPath.row]
         }
         
-        let detailViewController = DetailViewController.detailViewControllerForProduct(selectedProduct)
+        let detailViewController = DetailViewController(product: selectedProduct)
         navigationController?.pushViewController(detailViewController, animated: true)
 
         tableView.deselectRow(at: indexPath, animated: false)
@@ -149,32 +166,6 @@ extension MainTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         updateSearchResults(for: searchController)
-    }
-    
-}
-
-// MARK: - UISearchControllerDelegate
-
-extension MainTableViewController: UISearchControllerDelegate {
-    
-    func presentSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
-    }
-    
-    func willPresentSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
-    }
-    
-    func didPresentSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
-    }
-    
-    func willDismissSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
-    }
-    
-    func didDismissSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
     }
     
 }

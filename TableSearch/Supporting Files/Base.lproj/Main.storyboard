@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xrd-k4-fPL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xrd-k4-fPL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,10 +55,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lkn-Ze-TKK"/>
                     </view>
-                    <connections>
-                        <outlet property="priceLabel" destination="BwH-7P-EcD" id="MSr-Lh-eDK"/>
-                        <outlet property="yearLabel" destination="46p-f3-29u" id="j4L-LX-A9S"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ei8-JY-d50" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -72,10 +68,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="QmE-00-L9e" id="KLS-mr-dXd"/>
-                            <outlet property="delegate" destination="QmE-00-L9e" id="R9z-8y-dtl"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Table Search" id="Hkl-PY-wWx"/>
                 </tableViewController>
@@ -118,14 +110,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Pze-n4-kiz" id="i1A-KE-SHB"/>
-                            <outlet property="delegate" destination="Pze-n4-kiz" id="X3Z-Xb-0Rh"/>
-                        </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="resultsLabel" destination="ODr-yy-PsQ" id="kaj-SJ-BOy"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l9-7q-7Z4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
