@@ -12,10 +12,14 @@ class MainTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    let tableViewCellIdentifier = "cellID"
+    var provider: DataSourceProvider = DataSourceProvider()
+    
+    lazy var viewModel: MainTableViewModelProtocol = {
+        return MainTableViewModel(products: products)
+    }()
     
     lazy var products: [Product] = {
-        return setupDataSource()
+        return provider.setupDataSource()
     }()
     
     lazy var searchController: UISearchController = {
@@ -34,13 +38,8 @@ class MainTableViewController: UITableViewController {
     }()
     
     lazy var resultsTableController: ResultsTableController = {
-        
-        guard let resultsTableController = storyboard?.instantiateViewController(withIdentifier: "ResultsTableController") as? ResultsTableController else {
-            return ResultsTableController()
-        }
-        
+        let resultsTableController = ResultsTableController()
         resultsTableController.tableView.delegate = self
-        
         return resultsTableController
     }()
     
@@ -55,7 +54,7 @@ class MainTableViewController: UITableViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
@@ -78,8 +77,7 @@ class MainTableViewController: UITableViewController {
     }
     
     fileprivate func registerCell() {
-        let nib = UINib(nibName: "TableCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: tableViewCellIdentifier)
+        tableView.register(cellType: TableCellView.self)
     }
     
 }
@@ -90,17 +88,18 @@ extension MainTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectedProduct: Product!
-        
+        let selectedProduct: Product
+                
         if tableView === self.tableView {
-            selectedProduct = product(forIndexPath: indexPath)
+            selectedProduct = viewModel.didSelectRowAt(indexPath)
         } else {
-            selectedProduct = resultsTableController.viewModel.filteredProducts[indexPath.row]
+            selectedProduct = resultsTableController.viewModel.filteredProducts(indexPath.row)
         }
         
-        let detailViewController = DetailViewController(product: selectedProduct)
+        let detailViewController = DetailViewController()
+        detailViewController.viewModel = DetailViewModel(product: selectedProduct)
         navigationController?.pushViewController(detailViewController, animated: true)
-
+        
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
@@ -115,42 +114,16 @@ extension MainTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        var title = ""
-        switch section {
-        case 0:
-            title = Product.productTypeName(forType: .birthdays)
-        case 1:
-            title = Product.productTypeName(forType: .weddings)
-        case 2:
-            title = Product.productTypeName(forType: .funerals)
-        default: break
-        }
-        return title
+        return viewModel.titleForHeaderInSection(section)
     }
-        
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numInSection = 0
-        switch section {
-        case 0:
-            numInSection = quantity(forType: Product.ProductType.birthdays)
-        case 1:
-            numInSection = quantity(forType: Product.ProductType.weddings)
-        case 2:
-            numInSection = quantity(forType: Product.ProductType.funerals)
-        default: break
-        }
-        return numInSection
+        return viewModel.numberOfRowsInSection(section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier, for: indexPath)
-        let cellProduct = product(forIndexPath: indexPath)
-        
-        cell.textLabel?.text = cellProduct.title
-        
-        let priceString = cellProduct.formattedIntroPrice()
-        cell.detailTextLabel?.text = "\(priceString!) | \(cellProduct.yearIntroduced)"
-        
+        let cell: TableCellView = tableView.dequeueReusableCell(for: indexPath)
+        cell.viewModel = TableCellViewModel(product: viewModel.cellForRowAt(indexPath))
         return cell
     }
     

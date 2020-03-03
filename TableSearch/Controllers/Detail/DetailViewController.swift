@@ -12,56 +12,46 @@ import UIKit
 class DetailViewController: UIViewController {
     
     // MARK: - Properties
-
+    
     private static let restoreProduct = "restoreProductKey"
     
-    var product: Product? {
+    private var product: Product?
+    
+    var viewModel: DetailViewModelProtocol? {
         didSet {
             updateView()
         }
     }
     
-    var contentView: UIView = UIView()
-    var yearTitleLabel: UILabel = UILabel()
-    var priceTitleLabel: UILabel = UILabel()
-    var yearLabel: UILabel = UILabel()
-    var priceLabel: UILabel = UILabel()
+    private var contentView: UIView = UIView()
+    private var yearTitleLabel: UILabel = UILabel()
+    private var priceTitleLabel: UILabel = UILabel()
+    private var yearLabel: UILabel = UILabel()
+    private var priceLabel: UILabel = UILabel()
     
     // MARK: - Initialization
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    convenience init(product: Product) {
-        self.init()
-        self.product = product
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
     // MARK: - View Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         setupView()
     }
     
     func updateView() {
-        if let product = self.product {
-            
-            title = product.title
-            
-            yearLabel.text = "\(product.yearIntroduced)"
-            
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .currency
-            numberFormatter.formatterBehavior = .default
-            let priceString = numberFormatter.string(from: NSNumber(value: product.introPrice))
-            priceLabel.text = priceString
+        if let model = viewModel {
+            title = model.title
+            yearLabel.text = model.yearText
+            priceLabel.text = model.priceText
         }
     }
     
@@ -94,8 +84,6 @@ extension DetailViewController: ViewCodable {
     func configure() {
         yearTitleLabel.text = "Year:"
         priceTitleLabel.text = "Price:"
-        yearLabel.text = "Text"
-        priceLabel.text = "Text"
     }
     
     func buildHierarchy() {
@@ -127,7 +115,7 @@ extension DetailViewController: ViewCodable {
             make.top.equalTo(yearTitleLabel.layout.bottom, constant: 16)
             make.left.equalTo(contentView.layout.left, constant: 16)
         }
-                
+        
         priceLabel.layout.makeConstraints { make in
             make.top.equalTo(yearLabel.layout.bottom, constant: 16)
             make.left.equalTo(priceTitleLabel.layout.right, constant: 16)

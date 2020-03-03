@@ -1,14 +1,18 @@
 //
-//  MainTableViewController+DataSource.swift
+//  DataSourceProvider.swift
 //  TableSearch
 //
-//  Created by Lucas Nascimento on 02/03/20.
+//  Created by Lucas Nascimento on 03/03/20.
 //  Copyright © 2020 Lucas Nascimento. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-extension MainTableViewController {
+protocol DataSourceProviderProtocol {
+    
+}
+
+class DataSourceProvider {
     
     enum Localization: String {
         case ginger = "GingerTitle"
@@ -34,37 +38,7 @@ extension MainTableViewController {
             })
         }
     }
-    
-    func quantity(forType: Product.ProductType) -> Int {
-        var quantity = 0
         
-        for product in products where product.type == forType.rawValue {
-            quantity += 1
-        }
-        
-        return quantity
-    }
-    
-    func product(forIndexPath: IndexPath) -> Product {
-                
-        let quantityForBirthdays = quantity(forType: Product.ProductType.birthdays)
-        
-        switch forIndexPath.section {
-        case Product.ProductType.birthdays.rawValue - 1:
-            return products[forIndexPath.row]
-            
-        case Product.ProductType.weddings.rawValue - 1:
-            return products[forIndexPath.row + quantityForBirthdays]
-            
-        case Product.ProductType.funerals.rawValue - 1:
-            let quantityForWeddings = quantity(forType: Product.ProductType.weddings)
-            return products[forIndexPath.row + quantityForBirthdays + quantityForWeddings]
-            
-        default:
-            return Product(title: String(), yearIntroduced: 0, introPrice: 0, type: .all)
-        }
-    }
-    
     func setupDataSource() -> [Product] {
         return [
             Product(title: Localization.ginger.localized(), yearIntroduced: 2007, introPrice: 49.98, type: .birthdays),
@@ -88,4 +62,3 @@ extension MainTableViewController {
     }
     
 }
-

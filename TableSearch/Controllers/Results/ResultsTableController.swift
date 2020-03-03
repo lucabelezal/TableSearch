@@ -6,24 +6,8 @@
 //  Copyright © 2020 Lucas Nascimento. All rights reserved.
 //
 
+import Common
 import UIKit
-
-protocol ResultsTableViewModelProtocol {
-    var filteredProducts: [Product] { get }
-}
-
-struct ResultsTableViewModel: ResultsTableViewModelProtocol {
-    
-    var filteredProducts: [Product]
-    
-    init() {
-        self.filteredProducts = []
-    }
-    
-    init(filteredProducts: [Product]) {
-        self.filteredProducts = filteredProducts
-    }
-}
 
 class ResultsTableController: UITableViewController {
         
@@ -35,11 +19,14 @@ class ResultsTableController: UITableViewController {
         }
     }
     
-    private var resultsLabel: UILabel = UILabel()
+    private var tableHeaderView: UIView
+    private var resultsLabel: UILabel
     
     // MARK: - Initialization
     
     override init(style: UITableView.Style = .plain) {
+        tableHeaderView = UIView()
+        resultsLabel = UILabel()
         viewModel = ResultsTableViewModel()
         super.init(style: style)
     }
@@ -50,12 +37,7 @@ class ResultsTableController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableHeaderView?.frame.size.height = 44
-        tableView.tableHeaderView = resultsLabel
-        
+        setupView()
         registerTableCell()
     }
     
@@ -64,12 +46,7 @@ class ResultsTableController: UITableViewController {
     }
     
     func updateView() {
-        let successText = String(format: NSLocalizedString("Items found: %ld", comment: ""), viewModel.filteredProducts.count)
-        
-        let failureText = NSLocalizedString("NoItemsFoundTitle", comment: "")
-        
-        resultsLabel.text = viewModel.filteredProducts.isEmpty ? failureText : successText
-            
+        resultsLabel.text = viewModel.resultsText
         tableView.reloadData()
     }
     
@@ -80,13 +57,50 @@ class ResultsTableController: UITableViewController {
 extension ResultsTableController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.filteredProducts.count
+        return viewModel.filteredItems
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TableCellView = tableView.dequeueReusableCell(for: indexPath)
-        cell.viewModel = TableCellViewModel(product: viewModel.filteredProducts[indexPath.row])
+        cell.viewModel = TableCellViewModel(product: viewModel.filteredProducts(indexPath.row))
         return cell
+    }
+}
+
+extension ResultsTableController: ViewCodable {
+        
+    func configure() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        resultsLabel.textAlignment = .center
+    }
+    
+    func buildHierarchy() {
+        view.addView(tableHeaderView)
+        tableHeaderView.addView(resultsLabel)
+        tableView.tableHeaderView = tableHeaderView
+    }
+    
+    func buildConstraints() {
+        
+        tableHeaderView.layout.makeConstraints { make in
+            make.height.equalTo(constant: 44)
+            make.width.equalTo(constant: tableView.bounds.width)
+        }
+        
+        resultsLabel.layout.makeConstraints { make in
+            make.height.equalTo(constant: 21)
+            make.centerY.equalTo(tableHeaderView.layout.centerY)
+            make.centerX.equalTo(tableHeaderView.layout.centerX)
+        }
+    }
+    
+    func render() {
+        tableView.tableHeaderView?.backgroundColor = .secondarySystemBackground
+    }
+    
+    func configureAccessibility() {
+        
     }
     
 }

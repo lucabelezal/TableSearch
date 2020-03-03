@@ -372,14 +372,12 @@ extension SearchTableView: UISearchResultsUpdating {
         }
 
         // Match up the fields of the Product object.
-        let finalCompoundPredicate =
-            NSCompoundPredicate(andPredicateWithSubpredicates: andMatchPredicates)
+        let finalCompoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: andMatchPredicates)
 
         let filteredResults = searchResults.filter { finalCompoundPredicate.evaluate(with: $0) }
 
-        // Apply the filtered results to the search results table.
         if let resultsController = searchController.searchResultsController as? ResultsTableController {
-            resultsController.viewModel = ResultsTableViewModel(filteredProducts: filteredResults)
+            resultsController.viewModel = ResultsTableViewModel(filtered: filteredResults)
         }
     }
     

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        let controller = ResultsTableController()
+        let controller = MainTableViewController()
         let navigation = UINavigationController(rootViewController: controller)
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
