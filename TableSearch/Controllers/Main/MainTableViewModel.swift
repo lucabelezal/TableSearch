@@ -23,7 +23,7 @@ struct MainTableViewModel: MainTableViewModelProtocol {
     var didSelectRowAt: ((IndexPath) -> Product)
     
     init(products: [Product]) {
-        titleForHeaderInSection = { MainTableViewModel.titleForHeaderInSection(section: $0, products: products) }
+        titleForHeaderInSection = { MainTableViewModel.titleForHeaderInSection(section: $0) }
         numberOfRowsInSection = { MainTableViewModel.numberOfRowsIn(section: $0, products: products) }
         cellForRowAt = { MainTableViewModel.product(forIndexPath: $0, products: products) }
         didSelectRowAt = { MainTableViewModel.product(forIndexPath: $0, products: products) }
@@ -33,7 +33,7 @@ struct MainTableViewModel: MainTableViewModelProtocol {
 
 extension MainTableViewModel {
     
-    private static func titleForHeaderInSection(section: Int, products: [Product]) -> String {
+    private static func titleForHeaderInSection(section: Int) -> String {
         var title = ""
         switch section {
         case 0:
