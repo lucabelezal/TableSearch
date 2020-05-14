@@ -247,7 +247,7 @@ extension SearchTableView {
         super.decodeRestorableState(with: coder)
         
         // Restore the title.
-        guard let decodedTitle = coder.decodeObject(forKey: RestorationKeys.viewControllerTitle.rawValue) as? String else {
+        guard (coder.decodeObject(forKey: RestorationKeys.viewControllerTitle.rawValue) as? String) != nil else {
             fatalError("A title did not exist. In your app, handle this gracefully.")
         }
         //navigationItem.title! = decodedTitle

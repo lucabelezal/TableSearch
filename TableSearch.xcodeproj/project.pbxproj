@@ -56,6 +56,7 @@
 		6E60633D240D812100A0566A /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		6E606341240D895B00A0566A /* MainTableViewController+Updating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTableViewController+Updating.swift"; sourceTree = "<group>"; };
 		6E606343240D896600A0566A /* MainTableViewController+Restore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainTableViewController+Restore.swift"; sourceTree = "<group>"; };
+		B37B0535246D95E400EE7EF9 /* Common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Common.framework; path = Carthage/Build/iOS/Common.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 			children = (
 				6E606313240D792600A0566A /* TableSearch */,
 				6E606312240D792600A0566A /* Products */,
+				B37B0534246D95E400EE7EF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +187,14 @@
 				6E60633A240D80B100A0566A /* Product.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B37B0534246D95E400EE7EF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B37B0535246D95E400EE7EF9 /* Common.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +459,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "TableSearch/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -466,6 +480,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "TableSearch/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
